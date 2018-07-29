@@ -1,13 +1,13 @@
-package quickunionweighted_test
+package pathcompression_test
 
 import (
 	"testing"
 
-	"github.com/disiqueira/algorithms/quickunionweighted"
+	"github.com/disiqueira/algorithms/quickunion/weighted/pathcompression"
 )
 
 func TestQuickFind(t *testing.T) {
-	q := quickunionweighted.New(10)
+	q := pathcompression.New(10)
 	q.Union(1, 2)
 	if !q.Connected(1, 2) {
 		t.Error("Should be true")

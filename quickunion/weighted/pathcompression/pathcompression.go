@@ -1,8 +1,8 @@
-package quickunionweighted
+package pathcompression
 
 type (
 	QuickUnionWeighted interface {
-		UnionWeighted(a, b int)
+		Union(a, b int)
 		Connected(a, b int) bool
 		Root(a int) int
 	}
@@ -29,13 +29,14 @@ func New(s int) QuickUnionWeighted {
 }
 
 func (q *quickUnionWeighted) Root(a int) int {
-	for ; q.data[a] != a; a = q.data[a] {
-
+	for ; q.data[a] != a; {
+		q.data[a] = q.data[q.data[a]]
+		a = q.data[a]
 	}
 	return a
 }
 
-func (q *quickUnionWeighted) UnionWeighted(a, b int) {
+func (q *quickUnionWeighted) Union(a, b int) {
 	i := q.Root(a)
 	j := q.Root(b)
 	if i == j {
